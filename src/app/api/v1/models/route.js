@@ -69,6 +69,13 @@ const LIVE_MODEL_RESOLVERS = {
     });
     return result?.models?.length ? { models: result.models } : null;
   },
+  cline: async (conn) => {
+    const result = await resolveClinepassModels({
+      accessToken: conn.accessToken,
+      apiKey: conn.apiKey,
+    });
+    return result?.models?.length ? { models: result.models } : null;
+  },
   clinepass: async (conn) => {
     const result = await resolveClinepassModels({
       accessToken: conn.accessToken,

@@ -198,6 +198,10 @@ const PROVIDER_MODELS_CONFIG = {
   },
   openai: createOpenAIModelsConfig("https://api.openai.com/v1/models"),
   openrouter: createOpenAIModelsConfig("https://openrouter.ai/api/v1/models"),
+  // Cline and ClinePass share the same upstream /models catalog (public).
+  // OAuth accessToken carries the workos: prefix, which api.cline.bot accepts.
+  cline: createOpenAIModelsConfig("https://api.cline.bot/api/v1/models"),
+  clinepass: createOpenAIModelsConfig("https://api.cline.bot/api/v1/models"),
   anthropic: {
     url: "https://api.anthropic.com/v1/models",
     method: "GET",
