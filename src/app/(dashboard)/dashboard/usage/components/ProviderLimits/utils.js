@@ -702,8 +702,9 @@ export function parseQuotaData(provider, data) {
         break;
 
       case "ollama":
-        // Session (5h) / Weekly (7d) / Monthly usage % from ollama.com/api/usage.
-        // remainingPercentage only — no absolute remaining (UI treats remaining as %).
+        // Legacy plans: Session (5h) / Weekly (7d) / Monthly usage % from
+        // ollama.com/api/usage — remainingPercentage only. New per-token
+        // pricing: rolling "Spent (…)" rows (isSpend) with no bar.
         if (data.quotas) {
           Object.entries(data.quotas).forEach(([name, quota]) => {
             normalizedQuotas.push({
@@ -712,6 +713,9 @@ export function parseQuotaData(provider, data) {
               total: quota.total || 0,
               resetAt: quota.resetAt || null,
               remainingPercentage: quota.remainingPercentage,
+              isSpend: quota.isSpend === true,
+              requestCount: quota.requestCount,
+              currency: quota.currency,
             });
           });
         }
